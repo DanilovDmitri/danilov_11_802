@@ -1,5 +1,5 @@
 import java.util.Scanner;
-class Program {
+public class Program {
 	public static void main(String[] args) {
 
 	Scanner input = new Scanner(System.in); 
@@ -15,16 +15,22 @@ class Program {
         System.out.print (" " + a[i]);
     }
     System.out.println();
-    int t=0;
-    int k=1;
-   for (int i = 0; i < N; i++) {
-                t=t + a[N-i-1]*k;
-                k=k*10;
-   }
-    System.out.print (" " + t);
+    int n2=N-1;
+    int n1=0;
+    int nm=(n2+n1)/2;
+    Scanner chislo = new Scanner (System.in);
+    System.out.println("Vvedite iskomoe chislo");
+    int c = chislo.nextInt();
+    while (c != a[nm]) {
+            if (c>a[nm]) 
+            {
+                n1=nm+1;
+            } else {
+                n2=nm-1; 
+            }
+            nm=(n1+n2)/2; 
+        }
+            System.out.print(nm);
+    }
 	}
-}
-0 1 2 3 4 5 6 7 8 9 n1=0 n2=n-1 5 9
-1 2 3 4 5 6 7 8 9 10
-if (k>a[(n2-n1)/2+n1]) {n1=(n2/2+(n2%2))}
-         else n2=(n2-n1)/2+n1-(n2%2);
+
