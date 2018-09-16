@@ -3,7 +3,6 @@
 import java.util.Scanner;
 
 class Main {
-
     public static double f(double x) {
         return x * x;
     }
@@ -66,10 +65,15 @@ class Main {
         a = scanner.nextDouble();
         b = scanner.nextDouble();
         n = scanner.nextInt();
-        System.out.println("leftRiemannSums"+" "+leftRiemannSums(a, b, n)+" "+n);
-        System.out.println("rightRiemannSums"+" "+rightRiemannSums(a, b, n)+" "+n);
-        System.out.println("byMidpointSums"+" "+byMidpointSums(a, b, n)+" "+n);
-        System.out.println("byTrapezoidalRule"+" "+byTrapezoidalRule(a, b, n)+" "+n);
-        System.out.println("bySimpsonRule"+" "+bySimpsonRule(a, b, n)+" "+n);
+        int z1=n+1;
+        int z2=n;
+        int z3=n;
+        int z4=n+n+1;
+        int z5=1;
+        System.out.println("leftRiemannSums"+" "+leftRiemannSums(a, b, n)+" "+n+" "+z1);
+        System.out.println("rightRiemannSums"+" "+rightRiemannSums(a, b, n)+" "+n+" "+z2);
+        System.out.println("byMidpointSums"+" "+byMidpointSums(a, b, n)+" "+n+" "+z3);
+        System.out.println("byTrapezoidalRule"+" "+byTrapezoidalRule(a, b, n)+" "+n+" "+z4);
+        System.out.println("bySimpsonRule"+" "+bySimpsonRule(a, b, n)+" "+n+" "+z5);
     }
 }
