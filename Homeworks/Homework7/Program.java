@@ -1,5 +1,5 @@
 import java.util.Scanner;
-class Program {
+public class Program {
 	public static void main(String[] args) {
 
 	Scanner input = new Scanner(System.in); 
@@ -17,9 +17,15 @@ class Program {
     System.out.println();
     int t=0;
     int k=1;
-   for (int i = 0; i < N; i++) {
-                t=t + a[N-i-1]*k;
-                k=k*10;
+    int p=1;
+   for (int i = 0; i < N; i++) { int c=a[N-i-1];
+                while ((c>0) | (p!=0)) {
+                t=t + (c % 10)*k;
+                c=c/10;
+                k=k*10; p=0; }
+                p=1;
+                
+                
    }
     System.out.print (" " + t);
 	}
