@@ -16,7 +16,7 @@
      public int getChs() {
          return chs;
      }
-     public void setZnm(int chs) {
+     public void setZnm(int znm) {
         if (znm!=0) {
         this.znm = znm;
         }
@@ -46,4 +46,7 @@
         och.znm=ber.znm*ike.znm;
      return och;
       }
+     public void print(Drob drob) {
+         System.out.print (drob.chs + " / " + drob.znm);
+     }
 }
