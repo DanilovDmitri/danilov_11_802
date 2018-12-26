@@ -1,17 +1,16 @@
 public class Main {
 
-    public static Node reverse( Node node ) {
+    public static void reverse( Node node ) {
         Node prev = null;
         Node current = node;
-        Node next = null;
-        while (current != null) {
-            next = current.getNext();
+        Node next = node.getNext();
+        while (next != null) {
             current.setNext(prev);
             prev = current;
             current = next;
+            next=next.getNext();
         }
-        node = prev;
-        return node;
+        current.setNext(prev);
     }
 
     public static void printf( Node current ) {
@@ -66,37 +65,78 @@ public class Main {
         return evenStart;
     }
 
-    private static void swap( Node a1, Node a2 ) {
-        int n = a1.getValue();
-        a1.setValue(a2.getValue());
-        a2.setValue(n);
-    }
-
     public static void bubbleSort( Node head ) {
-        boolean flag = true;
-        Node tail = findLast(head);
+        Node tail = null;
+        while (head.getNext() != tail) {
+            Node prev = null;
+            Node current = head;
+            Node next = current.getNext();
+            while (current.getNext() != tail) {
+                if (current.getValue() > next.getValue()) {
+                    current.setNext(next.getNext());
+                    if (prev == null) {
+                        head = next;
+                    } else {
+                        prev.setNext(next);
+                    }
+                    next.setNext(current);
 
-        while (flag) {
-            Node le = head;
-            flag = false;
-            while (le != tail) {
-                if (le.getValue() > le.getNext().getValue()) {
-                    swap(le, le.getNext());
-                    flag = true;
+                    prev = next;
+                    next = current.getNext();
+                } else {
+                    prev = current;
+                    current = next;
+                    next = next.getNext();
                 }
-                le = le.getNext();
             }
+            tail = current;
         }
     }
 
-    public static Node findLast( Node head ) {
-        Node current = head;
-        while (current.getNext() != null) {
-            System.out.print(current.getValue() + "->");
-            current = current.getNext();
+    public static void selectionSort(Node head) {
+        if (head.getNext() == null) {
+            return;
         }
-        return current;
+        Node tailOfSortingElements = null;
+        do {
+            Node beginningElement = tailOfSortingElements;
+            if (beginningElement == null) {
+                beginningElement = head;
+            }
+            else {
+                beginningElement =  tailOfSortingElements.getNext();
+            }
+            Node prev = beginningElement;
+            Node current = beginningElement.getNext();
+            Node min = beginningElement;
+            Node minPrev = tailOfSortingElements;
+            while (current != null) {
+                if (current.getValue() < min.getValue()) {
+                    minPrev = prev;
+                    min = current;
+                }
+                prev = current;
+                current = current.getNext();
+            }
+
+            Node startNext = beginningElement.getNext();
+            beginningElement.setNext(min.getNext());
+            if (tailOfSortingElements != null) {
+                tailOfSortingElements.setNext(min);
+            }
+            if (startNext == min) {
+                min.setNext(beginningElement);
+            } else {
+                min.setNext(startNext);
+                if (minPrev != null) {
+                    minPrev.setNext(beginningElement);
+                }
+            }
+
+            tailOfSortingElements = min;
+        } while (tailOfSortingElements.getNext().getNext() != null);
     }
+
 
 
     public static void main( String[] args ) {
@@ -118,24 +158,21 @@ public class Main {
         f.setNext(g);
         g.setNext(h);
 
-        Node current;
-
-        a = segregateEvenOdd(a);
-
-        current = a;
-
-
-        printf(current);
 
         reverse(a);
 
-        current = a;
+        printf(h);
 
-        printf(current);
+        selectionSort(h);
 
+        printf(a);
 
-        bubbleSort(current);
+        segregateEvenOdd(a);
 
-        printf(current);
+        printf(b);
+
+        bubbleSort(b);
+
+        printf(a);
     }
 }
